@@ -335,8 +335,7 @@ class Box(object):
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
 
-        doubled_box = Box.double(self)
-        shrunk_box = Box.shrink(doubled_box, new_volume)
+        
 
 
     def reset(self):
