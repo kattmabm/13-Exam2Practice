@@ -39,8 +39,8 @@ def main():
     # UN-comment tests as you work the problems.
     ####################################################################
 
-#     run_test_init()
-#     run_test_append_string()
+    run_test_init()
+    run_test_append_string()
 #     run_test_double()
 #     run_test_shrink()
 #     run_test_double_then_shrink()
@@ -162,10 +162,16 @@ class Box(object):
         #    and continue working on the problem.
         # --------------------------------------------------------------
 
-        if self.volume > len(self.contents) + len(additional_contents):
-            self.contents += additional_contents
-        for k in range(self.volume - len(self.contents)):
-            self.contents += additional_contents[k]
+        appended_string = self.contents + additional_contents
+        clipped = ''
+        self.contents = ''
+        for k in range(len(appended_string)):
+            if k < self.volume:
+                self.contents += appended_string[k]
+            else:
+                clipped += appended_string[k]
+        return clipped
+
 
     def double(self):
         """
