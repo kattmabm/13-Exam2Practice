@@ -483,11 +483,11 @@ def practice_problem3d(sequence):
     #          This solution should *** HAVE NO LOOP (no FOR). ***
     ###################################################################
 
-    '''if len(practice_problem3c(sequence)) > 0:
+    if len(practice_problem3c(sequence)) > 0:
         return practice_problem3c(sequence)[0]
     else:
         return -1
-    '''
+
 
 
 def run_test_practice_problem3e():
