@@ -335,7 +335,7 @@ class Box(object):
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
 
-        
+
 
 
     def reset(self):
