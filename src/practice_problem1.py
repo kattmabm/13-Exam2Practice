@@ -103,6 +103,8 @@ class Box(object):
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
 
+        self.initial = self
+        self.history = []
         self.contents = contents
         self.volume = volume
         if len(contents) > volume:
@@ -163,13 +165,8 @@ class Box(object):
         # --------------------------------------------------------------
 
         appended_string = self.contents + additional_contents
-        clipped = ''
-        self.contents = ''
-        for k in range(len(appended_string)):
-            if k < self.volume:
-                self.contents += appended_string[k]
-            else:
-                clipped += appended_string[k]
+        self.contents = appended_string[0:self.volume]
+        clipped = appended_string[self.volume:len(appended_string)]
         return clipped
 
 
@@ -270,15 +267,10 @@ class Box(object):
         # and THEN translate the pseudo-code to a solution.
         # --------------------------------------------------------------
 
-        clipped = ''
-        shrunk = ''
-        for k in range(len(self.contents)):
-            if k < new_volume:
-                shrunk += self.contents[k]
-            else:
-                clipped += self.contents[k]
-        self.contents = shrunk
+        clipped = self.contents[new_volume:self.volume]
+        self.contents = self.contents[0:new_volume]
         self.volume = new_volume
+
         return clipped
 
 
@@ -335,6 +327,9 @@ class Box(object):
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
 
+        self.double()
+        return len(self.shrink(new_volume))
+
 
 
 
@@ -348,7 +343,7 @@ class Box(object):
           when this Box was constructed.
         """
         # --------------------------------------------------------------
-        # TODO: 7. Implement and test this function.
+        # DONE: 7. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -356,6 +351,9 @@ class Box(object):
         #    DIFFICULTY:      4
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+
+        self.history += self
+        self = self.initial
 
     def steal(self, other_box):
         """
@@ -419,7 +417,7 @@ class Box(object):
           #   h is now ['GoodGo', 'GoodBye']
         """
         # --------------------------------------------------------------
-        # TODO: 9. Implement and test this function.
+        # DONE: 9. Implement and test this function.
         #     The testing code is already written for you (above).
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -427,6 +425,8 @@ class Box(object):
         #    DIFFICULTY:      6
         #    TIME ESTIMATE:   5 minutes.
         # --------------------------------------------------------------
+
+        return self.history
 
     def combined_box(self, other_box):
         """
